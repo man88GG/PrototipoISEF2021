@@ -1,0 +1,4 @@
+
+Usuario: sistema
+Contraseña: si
+Nombre ODBC: CVI

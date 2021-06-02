@@ -1,5 +1,9 @@
 create database if not exists dbcvierp2;
 use dbcvierp2;
+
+
+
+
 #Base de datos Seguridad-----------------------------------------------------------------------------------
 create table if not exists LOGIN(
 	pk_id_login 						int(10) auto_increment,
@@ -536,6 +540,9 @@ alter table PEDIDO add constraint fk_pedido_empresa foreign key(fkIdEmpresa) ref
 alter table PEDIDO add constraint fk_pedido_sucursal foreign key(fkIdSucursal) references SUCURSAL(pkIdSucursal);
 alter table PEDIDO add constraint fk_pedido_cliente foreign key(fkIdCliente) references CLIENTE(pkIdCliente);
 
+
+
+
 create table if not exists DETALLEPEDIDO(
 	pkIdDetallePedido			int(10)not null auto_increment,
     fkIdPedido					int(10)not null,
@@ -621,6 +628,24 @@ primary key(fkmovimiento, fkidproducto)
 alter table MOVIMIENTOINVENTARIODETALLE add constraint fk_detalleproductoo foreign key(fkidproducto) references PRODUCTO(pkIdProducto);
 alter table MOVIMIENTOINVENTARIODETALLE add constraint fk_detallemovimiento foreign key(fkmovimiento) references MOVIMIENTOINVENTARIOENCABEZADO(pkmovimientoe);
 
+create table if not exists FACTURA(
+pkIdFactura						int(10)not null auto_increment,
+fkNumOrden						int(10)not null,
+NomProveedor					varchar(150)not null,
+NomEmpleado						varchar(150)not null,
+NomEmpresa						varchar(150)not null,
+NomSucursal						varchar(150)not null,
+NomBodega						varchar(150)not null,
+FechaCompra						varchar(55)not null,
+TotalCompra						varchar(55)not null,
+TipoPago						varchar(55)not null,
+Metodo							varchar(55)not null,
+FechaFacturación				varchar(55)not null,
+estado							int(1),
+primary key(pkIdFactura)
+);
+
+alter table FACTURA add constraint fk_fact_orden foreign key(fkNumOrden) references COMPRAENCABEZADO(pkNoDocumentoEnca);
 
 
 #PROCEDIMIENTO ALMACENADO LOGIN --------------------------------------------------------------------------------------------------------------------------
